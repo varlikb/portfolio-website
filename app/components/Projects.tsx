@@ -185,7 +185,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="section-padding bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <section id="projects" className="section-padding">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -196,7 +196,7 @@ const Projects = () => {
           {/* Section Header */}
           <motion.div variants={cardVariants} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 gradient-text">Featured Projects</h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
               A showcase of my technical expertise spanning research, full-stack development, 
               data science, and innovative problem-solving across various domains.
             </p>
@@ -209,7 +209,7 @@ const Projects = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: i * 0.1 }}
-                  className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+                  className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
                 />
               ))}
             </div>
@@ -221,7 +221,7 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 variants={cardVariants}
-                className={`group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg hover:shadow-2xl transition-all duration-500 ${
+                className={`group relative overflow-hidden rounded-3xl trust-card ${
                   project.featured ? 'lg:col-span-2' : ''
                 }`}
               >
@@ -232,7 +232,7 @@ const Projects = () => {
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
-                      className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg flex items-center space-x-1"
+                      className="bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 text-xs font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg flex items-center space-x-1"
                     >
                       <Star size={10} className="sm:w-3 sm:h-3" />
                       <span className="text-xs">FEATURED</span>
@@ -256,7 +256,7 @@ const Projects = () => {
                       </motion.div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
+                          <span className="text-xs sm:text-sm font-medium text-slate-400">
                             {project.category}
                           </span>
                           <div className="flex space-x-1">
@@ -265,20 +265,20 @@ const Projects = () => {
                             ))}
                           </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 leading-tight mb-2">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-200 leading-tight mb-2">
                           {project.title}
                         </h3>
                       </div>
                     </div>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-700/30 rounded-xl border border-slate-600/50">
                       {Object.entries(project.stats).map(([key, value]) => (
                         <div key={key} className="text-center">
-                          <div className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
+                          <div className="text-xs sm:text-sm font-semibold text-slate-200 mb-1">
                             {value}
                           </div>
-                          <div className="text-xs text-slate-500 dark:text-slate-400 capitalize leading-tight">
+                          <div className="text-xs text-slate-400 capitalize leading-tight">
                             {key}
                           </div>
                         </div>
@@ -286,13 +286,13 @@ const Projects = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Technologies */}
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wide">
+                      <h4 className="text-xs sm:text-sm font-semibold text-slate-300 mb-3 uppercase tracking-wide">
                         Tech Stack
                       </h4>
                       <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -300,7 +300,7 @@ const Projects = () => {
                           <motion.div
                             key={tech.name}
                             whileHover={{ scale: 1.05, y: -2 }}
-                            className="flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300"
+                            className="flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-slate-700/50 rounded-xl border border-slate-600/50 shadow-sm hover:shadow-md transition-all duration-300 hover:bg-slate-600/50"
                           >
                             <Image
                               src={tech.logo}
@@ -309,7 +309,7 @@ const Projects = () => {
                               height={16}
                               className="flex-shrink-0 sm:w-5 sm:h-5"
                             />
-                            <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
+                            <span className="text-xs sm:text-sm font-medium text-slate-300">
                               {tech.name}
                             </span>
                           </motion.div>
@@ -319,7 +319,7 @@ const Projects = () => {
 
                     {/* Results */}
                     <div className="space-y-3">
-                      <h4 className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide flex items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-semibold text-slate-300 uppercase tracking-wide flex items-center gap-2">
                         <TrendingUp size={14} className="sm:w-4 sm:h-4" />
                         Key Results
                       </h4>
@@ -330,9 +330,9 @@ const Projects = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 flex items-start gap-2 sm:gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                            className="text-xs sm:text-sm text-slate-300 flex items-start gap-2 sm:gap-3 p-2 rounded-lg hover:bg-slate-700/50 transition-colors"
                           >
-                            <span className="text-green-500 font-bold mt-0.5 text-sm sm:text-lg flex-shrink-0">✓</span>
+                            <span className="text-green-400 font-bold mt-0.5 text-sm sm:text-lg flex-shrink-0">✓</span>
                             <span className="flex-1 leading-relaxed">{result}</span>
                           </motion.li>
                         ))}
@@ -347,7 +347,7 @@ const Projects = () => {
                           {...getSecureExternalLinkProps(project.links.github)}
                           whileHover={{ scale: 1.05, y: -2 }}
                           whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-slate-100 text-slate-900 rounded-xl font-semibold hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                         >
                           <Github size={16} className="sm:w-4 sm:h-4" />
                           <span>View Code</span>
@@ -359,7 +359,7 @@ const Projects = () => {
                           {...getSecureExternalLinkProps(project.links.paper)}
                           whileHover={{ scale: 1.05, y: -2 }}
                           whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-slate-500 text-slate-300 rounded-xl font-semibold hover:bg-slate-700/50 hover:border-slate-400 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                         >
                           <ExternalLink size={16} className="sm:w-4 sm:h-4" />
                           <span>Read Paper</span>
@@ -422,7 +422,7 @@ const Projects = () => {
 
           {/* Call to Action */}
           <motion.div variants={cardVariants} className="text-center mt-16">
-            <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-700">
+            <div className="trust-card rounded-3xl p-8">
               <motion.div
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
@@ -435,11 +435,11 @@ const Projects = () => {
                   <motion.span animate={{ y: [0, -10, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}>⭐</motion.span>
                 </div>
               </motion.div>
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">
-                Interested in My Work?
+              <h3 className="text-2xl font-bold text-slate-200 mb-4">
+                View All Projects
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
-                Explore the complete codebase, documentation, and implementation details for all projects.
+              <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+                Explore the complete codebase, documentation, and implementation details.
               </p>
               <motion.a
                 href="https://github.com/varlikb"
@@ -449,13 +449,7 @@ const Projects = () => {
                 className="btn-primary inline-flex items-center space-x-2 text-lg px-8 py-4"
               >
                 <Github size={24} />
-                <span>View All Projects on GitHub</span>
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
+                <span>GitHub Repository</span>
               </motion.a>
             </div>
           </motion.div>

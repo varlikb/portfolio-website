@@ -30,13 +30,13 @@ const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-lg' 
+          ? 'glass shadow-2xl' 
           : 'bg-transparent'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between py-4 px-4 sm:px-0">
-          {/* Logo */}
+          {/* Professional Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="font-bold text-lg sm:text-xl gradient-text cursor-pointer"
@@ -52,7 +52,7 @@ const Navigation = () => {
                 href={item.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium"
+                className="nav-link"
               >
                 {item.name}
               </motion.a>
@@ -62,7 +62,7 @@ const Navigation = () => {
               {...getSecureExternalLinkProps("https://github.com/varlikb")}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+              className="p-2 text-slate-300 hover:text-blue-400 transition-colors duration-200 rounded-lg hover:bg-slate-700/50"
             >
               <Github size={20} />
             </motion.a>
@@ -72,24 +72,24 @@ const Navigation = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+            className="md:hidden p-2 text-slate-300 hover:text-blue-400 transition-colors duration-200 rounded-lg hover:bg-slate-700/50"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Professional Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-700"
+            className="md:hidden glass border-t border-slate-600/50"
           >
-            <div className="container-custom py-4 px-6">
-              <div className="flex flex-col space-y-6">
+            <div className="container-custom py-6 px-6">
+              <div className="flex flex-col space-y-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.name}
@@ -98,7 +98,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => setIsOpen(false)}
-                    className="text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2 text-lg"
+                    className="text-slate-300 hover:text-blue-400 transition-colors duration-200 font-medium py-3 text-lg border-b border-slate-700/50 last:border-b-0"
                   >
                     {item.name}
                   </motion.a>
@@ -109,7 +109,7 @@ const Navigation = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}
-                  className="flex items-center space-x-3 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2 text-lg"
+                  className="flex items-center space-x-3 text-slate-300 hover:text-blue-400 transition-colors duration-200 font-medium py-3 text-lg"
                 >
                   <Github size={20} />
                   <span>GitHub</span>

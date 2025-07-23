@@ -77,7 +77,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <section id="contact" className="section-padding">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -86,139 +86,128 @@ const Contact = () => {
           variants={containerVariants}
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Let's Connect</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-              Ready to discuss innovative projects, collaboration opportunities, or share insights about 
-              AI/ML, embedded systems, and software engineering? I'd love to hear from you.
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 gradient-text">Let's Connect</h2>
+            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+              Ready to collaborate on innovative projects? I'm always open to discussing new opportunities, 
+              technical challenges, and creative solutions in software engineering and AI/ML.
             </p>
+            
+            {/* Decorative Elements */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                />
+              ))}
+            </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            
-            {/* Left Column - Contact Info */}
+          <div className="max-w-4xl mx-auto">
+            {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-6">
+              <div>
+                <h3 className="text-2xl font-bold text-slate-200 mb-4 text-center">
                   Get In Touch
                 </h3>
                 
-                {contactInfo.map((item, index) => (
+                {/* Contact Methods */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                   <motion.a
-                    key={item.label}
-                    href={item.link}
-                    {...(item.isExternal ? getSecureExternalLinkProps(item.link) : {})}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 group w-full"
+                    href={createSecureMailto('varlikbbusiness@gmail.com', 'Portfolio Inquiry')}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="flex items-center gap-3 p-4 trust-card rounded-2xl hover:border-blue-400/50 transition-all duration-300 group"
                   >
-                    <div className="flex-shrink-0 p-2 sm:p-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white group-hover:from-primary-600 group-hover:to-primary-700 transition-colors">
-                      <item.icon size={18} className="sm:w-5 sm:h-5" />
+                    <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-2xl group-hover:scale-110 transition-transform">
+                      <Mail size={20} />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1 text-sm sm:text-base">
-                        {item.label}
-                      </div>
-                      <div className="text-primary-600 dark:text-primary-400 font-medium mb-1 text-sm sm:text-base break-words">
-                        {item.value}
-                      </div>
-                      <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                        {item.description}
-                      </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-200 mb-1">Email</h4>
+                      <p className="text-slate-400 text-sm">Contact me</p>
                     </div>
                   </motion.a>
-                ))}
-              </div>
-            </motion.div>
 
-            {/* Right Column - Collaboration Areas */}
-            <motion.div variants={itemVariants} className="space-y-8">
+                  <motion.a
+                    href="https://github.com/varlikb"
+                    {...getSecureExternalLinkProps("https://github.com/varlikb")}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="flex items-center gap-3 p-4 trust-card rounded-2xl hover:border-blue-400/50 transition-all duration-300 group"
+                  >
+                    <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-2xl group-hover:scale-110 transition-transform">
+                      <Github size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-200 mb-1">GitHub</h4>
+                      <p className="text-slate-400 text-sm">View projects</p>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href="https://linkedin.com/in/talha-bilal-varlık"
+                    {...getSecureExternalLinkProps("https://linkedin.com/in/talha-bilal-varlık")}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="flex items-center gap-3 p-4 trust-card rounded-2xl hover:border-blue-400/50 transition-all duration-300 group sm:col-span-2 lg:col-span-1"
+                  >
+                    <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl group-hover:scale-110 transition-transform">
+                      <Linkedin size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-200 mb-1">LinkedIn</h4>
+                      <p className="text-slate-400 text-sm">Connect professionally</p>
+                    </div>
+                  </motion.a>
+                </div>
+              </div>
+
               <div>
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-6">
+                <h3 className="text-2xl font-bold text-slate-200 mb-4 text-center">
                   Collaboration Opportunities
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
                   {[
                     {
                       title: "AI/ML Projects",
-                      description: "Machine learning solutions, algorithm optimization, and intelligent system design"
+                      description: "Machine learning solutions and algorithm optimization"
                     },
                     {
                       title: "IoT & Embedded Systems",
-                      description: "Smart device development, sensor integration, and real-time data processing"
+                      description: "Smart device development and sensor integration"
                     },
                     {
                       title: "Full-Stack Development",
-                      description: "End-to-end application development with modern frameworks and technologies"
+                      description: "End-to-end application development"
                     },
                     {
                       title: "Research & Innovation",
-                      description: "Academic collaboration, algorithm design, and computational problem solving"
-                    },
-                    {
-                      title: "Team Leadership",
-                      description: "Technical project management, mentoring, and cross-functional team coordination"
+                      description: "Academic collaboration and algorithm design"
                     }
-                  ].map((item, index) => (
+                  ].map((opportunity, index) => (
                     <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                      className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                      key={opportunity.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      className="p-4 trust-card rounded-xl hover:border-blue-400/50 transition-all duration-300"
                     >
-                      <span className="text-primary-500 font-bold mt-1">•</span>
-                      <div>
-                        <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
-                          {item.title}
-                        </div>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">
-                          {item.description}
-                        </div>
-                      </div>
+                      <h4 className="font-semibold text-slate-200 mb-2 flex items-center gap-2">
+                        <span className="text-blue-400">•</span>
+                        {opportunity.title}
+                      </h4>
+                      <p className="text-slate-400 text-sm leading-relaxed">
+                        {opportunity.description}
+                      </p>
                     </motion.div>
                   ))}
                 </div>
-
-                <motion.div 
-                  className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                >
-                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                    With proven experience in leading teams, optimizing system performance, and delivering 
-                    measurable results, I'm ready to contribute to innovative projects that push the boundaries 
-                    of technology and create meaningful impact.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <motion.a
-                      href={createSecureMailto("varlikbbusiness@gmail.com", "Let's collaborate!")}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="btn-primary inline-flex items-center space-x-2 justify-center"
-                    >
-                      <Mail size={20} />
-                      <span>Send Email</span>
-                    </motion.a>
-                    <motion.a
-                      href="https://linkedin.com/in/talha-bilal-varlık"
-                      {...getSecureExternalLinkProps("https://linkedin.com/in/talha-bilal-varlık")}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center space-x-2 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 justify-center"
-                    >
-                      <Linkedin size={20} />
-                      <span>LinkedIn</span>
-                    </motion.a>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
+
         </motion.div>
       </div>
     </section>

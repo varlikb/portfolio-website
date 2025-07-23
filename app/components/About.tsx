@@ -222,10 +222,9 @@ const About = () => {
                 >
                   🚀
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Let's Work Together</h3>
+                <h3 className="text-2xl font-bold mb-4">Explore More</h3>
                 <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                  Ready to apply my software engineering expertise to solve complex challenges 
-                  and create innovative solutions.
+                  Discover my technical skills and project portfolio.
                 </p>
                 <div className="flex justify-center space-x-4">
                   <motion.a
@@ -241,7 +240,7 @@ const About = () => {
                     whileHover={{ scale: 1.05, y: -2 }}
                     className="inline-flex items-center space-x-2 bg-white/10 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20"
                   >
-                    <span>See Projects</span>
+                    <span>View Projects</span>
                     <span>📂</span>
                   </motion.a>
                 </div>
