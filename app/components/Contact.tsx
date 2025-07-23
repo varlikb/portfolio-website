@@ -77,7 +77,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding bg-slate-900">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -88,7 +88,7 @@ const Contact = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 gradient-text">Let's Connect</h2>
-            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-200 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed font-medium">
               Ready to collaborate on innovative projects? I'm always open to discussing new opportunities, 
               technical challenges, and creative solutions in software engineering and AI/ML.
             </p>

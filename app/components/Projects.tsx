@@ -185,7 +185,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="section-padding">
+    <section id="projects" className="section-padding bg-slate-900">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -196,7 +196,7 @@ const Projects = () => {
           {/* Section Header */}
           <motion.div variants={cardVariants} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 gradient-text">Featured Projects</h2>
-            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-200 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed font-medium">
               A showcase of my technical expertise spanning research, full-stack development, 
               data science, and innovative problem-solving across various domains.
             </p>

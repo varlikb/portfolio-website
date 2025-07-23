@@ -100,7 +100,7 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding bg-slate-900">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -111,7 +111,7 @@ const Skills = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 gradient-text">Technical Skills</h2>
-            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-200 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed font-medium">
               A comprehensive skill set developed through hands-on experience in software engineering,
               research, and team leadership across diverse technical domains.
             </p>
@@ -303,8 +303,8 @@ const Skills = () => {
           </motion.div>
 
           {/* Interests */}
-          <motion.div variants={itemVariants} className="mb-16 mt-20">
-            <h3 className="text-3xl font-bold text-slate-200 mb-8 text-center">
+          <motion.div variants={itemVariants} className="mb-16 mt-24">
+            <h3 className="text-3xl font-bold text-slate-200 mb-10 text-center">
               Current Interests
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -316,7 +316,7 @@ const Skills = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
-                    <span className="text-slate-300 font-medium">
+                    <span className="text-slate-200 font-medium">
                       {interest}
                     </span>
                   </div>
