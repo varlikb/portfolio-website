@@ -117,19 +117,39 @@ const Skills = () => {
             </p>
           </motion.div>
 
-          {/* Quick Stats */}
-          <motion.div variants={itemVariants} className="grid grid-cols-4 gap-6 mb-16">
-            {achievements.map((achievement, index) => (
-              <div key={achievement.title} className="text-center p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-                <div className="text-3xl mb-2">{achievement.icon}</div>
-                <div className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-1">
-                  {achievement.count}
-                </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">
-                  {achievement.title}
-                </div>
-              </div>
-            ))}
+          {/* Stats Cards */}
+          <motion.div variants={itemVariants}>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12">
+              {[
+                { icon: "💼", number: "2+", label: "Years Experience" },
+                { icon: "⚡", number: "20+", label: "Technologies" },
+                { icon: "👥", number: "6", label: "Team Leadership" },
+                { icon: "📂", number: "15+", label: "Projects" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center p-4 lg:p-6 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200 dark:border-slate-700 group cursor-default"
+                >
+                  <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                    className="text-2xl lg:text-3xl mb-2 group-hover:scale-110 transition-transform"
+                  >
+                    {stat.icon}
+                  </motion.div>
+                  <div className="text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs lg:text-sm text-slate-600 dark:text-slate-400 leading-tight">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Skills Categories */}

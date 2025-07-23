@@ -94,10 +94,10 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             
             {/* Left Column - Contact Info */}
-            <motion.div variants={itemVariants} className="space-y-8">
+            <motion.div variants={itemVariants} className="space-y-6">
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-6">
                   Get In Touch
@@ -111,19 +111,19 @@ const Contact = () => {
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, x: 10 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-start gap-4 p-6 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 group"
+                    className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 group w-full"
                   >
-                    <div className="p-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white group-hover:from-primary-600 group-hover:to-primary-700 transition-colors">
-                      <item.icon size={20} />
+                    <div className="flex-shrink-0 p-2 sm:p-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white group-hover:from-primary-600 group-hover:to-primary-700 transition-colors">
+                      <item.icon size={18} className="sm:w-5 sm:h-5" />
                     </div>
-                    <div>
-                      <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1 text-sm sm:text-base">
                         {item.label}
                       </div>
-                      <div className="text-primary-600 dark:text-primary-400 font-medium mb-1">
+                      <div className="text-primary-600 dark:text-primary-400 font-medium mb-1 text-sm sm:text-base break-words">
                         {item.value}
                       </div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">
+                      <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
                         {item.description}
                       </div>
                     </div>

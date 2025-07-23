@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Mail, Download, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 import { getSecureExternalLinkProps } from '../utils/security'
 
 const Hero = () => {
@@ -107,15 +108,29 @@ const Hero = () => {
           animate="visible"
           className="text-center space-y-8 max-w-4xl mx-auto"
         >
-          {/* Profile Image Placeholder with Animation */}
+          {/* Profile Image with Animation */}
           <motion.div variants={itemVariants} className="flex justify-center mb-8">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="relative"
             >
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-full bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-6xl">
-                  👨‍💻
+                <div className="w-full h-full rounded-full bg-slate-50 dark:bg-slate-900 flex items-center justify-center overflow-hidden">
+                  {/* Replace this div with your actual photo */}
+                  <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-slate-700 dark:to-slate-600 rounded-full flex items-center justify-center text-4xl">
+                    👨‍💻
+                  </div>
+                  {/* 
+                  Uncomment and use this when you add your photo:
+                  <Image
+                    src="/profile-photo.jpg"
+                    alt="Talha Bilal Varlık"
+                    width={120}
+                    height={120}
+                    className="w-full h-full object-cover rounded-full"
+                    priority
+                  />
+                  */}
                 </div>
               </div>
               {/* Floating sparkles around avatar */}
@@ -136,7 +151,7 @@ const Hero = () => {
           {/* Main Title */}
           <motion.div variants={itemVariants} className="space-y-4 relative">
             <motion.h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight relative z-10"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight relative z-10"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -153,7 +168,7 @@ const Hero = () => {
                 <motion.div
                   animate={{ rotate: [0, 15, -15, 0] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  className="absolute -top-4 -right-4 text-2xl"
+                  className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 text-xl sm:text-2xl"
                 >
                   ✨
                 </motion.div>
@@ -171,7 +186,7 @@ const Hero = () => {
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-                  className="absolute -top-2 -right-6 text-2xl"
+                  className="absolute -top-1 sm:-top-2 -right-3 sm:-right-6 text-xl sm:text-2xl"
                 >
                   🎯
                 </motion.div>
@@ -182,20 +197,20 @@ const Hero = () => {
               className="flex justify-center items-center space-x-4"
               variants={itemVariants}
             >
-              <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent w-24" />
+              <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent w-16 sm:w-24" />
               <motion.p 
-                className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 font-light px-4"
+                className="text-lg sm:text-xl lg:text-2xl text-slate-600 dark:text-slate-400 font-light px-2 sm:px-4 text-center"
                 whileHover={{ scale: 1.05 }}
               >
                 AI/ML Software Engineer
               </motion.p>
-              <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent w-24" />
+              <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent w-16 sm:w-24" />
             </motion.div>
           </motion.div>
 
           {/* Description */}
-          <motion.div variants={itemVariants} className="max-w-3xl mx-auto relative">
-            <div className="absolute -top-8 left-1/4 text-2xl opacity-30">
+          <motion.div variants={itemVariants} className="max-w-3xl mx-auto relative px-4 sm:px-0">
+            <div className="absolute -top-8 left-1/4 text-2xl opacity-30 hidden sm:block">
               <motion.span
                 animate={{ rotate: [0, 20, -20, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
@@ -203,7 +218,7 @@ const Hero = () => {
                 🔬
               </motion.span>
             </div>
-            <div className="absolute -bottom-4 right-1/3 text-2xl opacity-25">
+            <div className="absolute -bottom-4 right-1/3 text-2xl opacity-25 hidden sm:block">
               <motion.span
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
@@ -211,7 +226,7 @@ const Hero = () => {
                 💡
               </motion.span>
             </div>
-            <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 leading-relaxed bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-200/50 dark:border-slate-700/50">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-700 dark:text-slate-300 leading-relaxed bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-700/50">
               Recent Software Engineering graduate with expertise in AI/ML, embedded systems, and full-stack development. 
               Proven track record in leading cross-functional teams and developing intelligent systems from IoT applications 
               to machine learning solutions. Passionate about bridging theory and practical implementation.
@@ -219,7 +234,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Skills Highlights */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 max-w-4xl mx-auto px-4 sm:px-0">
             {[
               { text: 'AI/ML Engineering', emoji: '🤖', color: 'from-purple-500 to-indigo-600' },
               { text: 'Embedded Systems', emoji: '🔧', color: 'from-blue-500 to-cyan-600' },
@@ -238,17 +253,18 @@ const Hero = () => {
                   y: -5,
                   boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
                 }}
-                className={`glass px-4 py-2 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50 cursor-default relative overflow-hidden group`}
+                className={`glass px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50 cursor-default relative overflow-hidden group`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                <div className="flex items-center space-x-2 relative z-10">
+                <div className="flex items-center space-x-1 sm:space-x-2 relative z-10">
                   <motion.span
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                    className="text-sm sm:text-base"
                   >
                     {skill.emoji}
                   </motion.span>
-                  <span>{skill.text}</span>
+                  <span className="whitespace-nowrap">{skill.text}</span>
                 </div>
               </motion.div>
             ))}
