@@ -195,8 +195,8 @@ const Projects = () => {
         >
           {/* Section Header */}
           <motion.div variants={cardVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Featured Projects</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 gradient-text">Featured Projects</h2>
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
               A showcase of my technical expertise spanning research, full-stack development, 
               data science, and innovative problem-solving across various domains.
             </p>
@@ -216,7 +216,7 @@ const Projects = () => {
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="space-y-8">
+          <div className="space-y-8 px-4 sm:px-0">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -227,15 +227,15 @@ const Projects = () => {
               >
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-6 right-6 z-10">
+                  <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10">
                     <motion.span 
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
-                      className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center space-x-1"
+                      className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg flex items-center space-x-1"
                     >
-                      <Star size={12} />
-                      <span>FEATURED</span>
+                      <Star size={10} className="sm:w-3 sm:h-3" />
+                      <span className="text-xs">FEATURED</span>
                     </motion.span>
                   </div>
                 )}
@@ -243,20 +243,20 @@ const Projects = () => {
                 {/* Background Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
 
-                <div className={`grid ${project.featured ? 'lg:grid-cols-2' : 'lg:grid-cols-2'} gap-8 p-8 relative z-10`}>
+                <div className={`grid ${project.featured ? 'lg:grid-cols-2' : 'lg:grid-cols-2'} gap-6 sm:gap-8 p-6 sm:p-8 relative z-10`}>
                   {/* Content */}
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Header */}
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-3 sm:gap-4">
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className={`p-4 rounded-2xl bg-gradient-to-r ${project.color} text-white shadow-lg`}
+                        className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-r ${project.color} text-white shadow-lg flex-shrink-0`}
                       >
-                        <project.icon size={28} />
+                        <project.icon size={24} className="sm:w-7 sm:h-7" />
                       </motion.div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
                             {project.category}
                           </span>
                           <div className="flex space-x-1">
@@ -265,20 +265,20 @@ const Projects = () => {
                             ))}
                           </div>
                         </div>
-                        <h3 className="text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 leading-tight">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 leading-tight mb-2">
                           {project.title}
                         </h3>
                       </div>
                     </div>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-2 gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
                       {Object.entries(project.stats).map(([key, value]) => (
                         <div key={key} className="text-center">
-                          <div className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                          <div className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
                             {value}
                           </div>
-                          <div className="text-xs text-slate-500 dark:text-slate-400 capitalize">
+                          <div className="text-xs text-slate-500 dark:text-slate-400 capitalize leading-tight">
                             {key}
                           </div>
                         </div>
@@ -286,30 +286,30 @@ const Projects = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
+                    <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Technologies */}
                     <div>
-                      <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wide">
+                      <h4 className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wide">
                         Tech Stack
                       </h4>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         {project.technologies.map((tech) => (
                           <motion.div
                             key={tech.name}
                             whileHover={{ scale: 1.05, y: -2 }}
-                            className="flex items-center space-x-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300"
+                            className="flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300"
                           >
                             <Image
                               src={tech.logo}
                               alt={tech.name}
-                              width={20}
-                              height={20}
-                              className="flex-shrink-0"
+                              width={16}
+                              height={16}
+                              className="flex-shrink-0 sm:w-5 sm:h-5"
                             />
-                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                            <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
                               {tech.name}
                             </span>
                           </motion.div>
@@ -319,37 +319,37 @@ const Projects = () => {
 
                     {/* Results */}
                     <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide flex items-center gap-2">
-                        <TrendingUp size={16} />
+                      <h4 className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide flex items-center gap-2">
+                        <TrendingUp size={14} className="sm:w-4 sm:h-4" />
                         Key Results
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2 sm:space-y-3">
                         {project.results.map((result, idx) => (
                           <motion.li 
                             key={idx} 
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="text-sm text-slate-600 dark:text-slate-400 flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                            className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 flex items-start gap-2 sm:gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
                           >
-                            <span className="text-green-500 font-bold mt-0.5 text-lg">✓</span>
-                            <span className="flex-1">{result}</span>
+                            <span className="text-green-500 font-bold mt-0.5 text-sm sm:text-lg flex-shrink-0">✓</span>
+                            <span className="flex-1 leading-relaxed">{result}</span>
                           </motion.li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Links */}
-                    <div className="flex items-center gap-4 pt-4">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                       {project.links.github && (
                         <motion.a
                           href={project.links.github}
                           {...getSecureExternalLinkProps(project.links.github)}
                           whileHover={{ scale: 1.05, y: -2 }}
                           whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                         >
-                          <Github size={18} />
+                          <Github size={16} className="sm:w-4 sm:h-4" />
                           <span>View Code</span>
                         </motion.a>
                       )}
@@ -359,9 +359,9 @@ const Projects = () => {
                           {...getSecureExternalLinkProps(project.links.paper)}
                           whileHover={{ scale: 1.05, y: -2 }}
                           whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+                          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                         >
-                          <ExternalLink size={18} />
+                          <ExternalLink size={16} className="sm:w-4 sm:h-4" />
                           <span>Read Paper</span>
                         </motion.a>
                       )}

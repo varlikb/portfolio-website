@@ -35,11 +35,11 @@ const Navigation = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-4 px-4 sm:px-0">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-bold text-xl gradient-text cursor-pointer"
+            className="font-bold text-lg sm:text-xl gradient-text cursor-pointer"
           >
             Talha Bilal Varlık
           </motion.div>
@@ -88,8 +88,8 @@ const Navigation = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-700"
           >
-            <div className="container-custom py-4">
-              <div className="flex flex-col space-y-4">
+            <div className="container-custom py-4 px-6">
+              <div className="flex flex-col space-y-6">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.name}
@@ -98,7 +98,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => setIsOpen(false)}
-                    className="text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2"
+                    className="text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2 text-lg"
                   >
                     {item.name}
                   </motion.a>
@@ -109,7 +109,7 @@ const Navigation = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}
-                  className="flex items-center space-x-2 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2"
+                  className="flex items-center space-x-3 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2 text-lg"
                 >
                   <Github size={20} />
                   <span>GitHub</span>
