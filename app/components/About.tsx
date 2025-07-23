@@ -55,11 +55,11 @@ const About = () => {
   }
 
   return (
-    <section id="about" className="section-padding bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
-      {/* Decorative Background */}
+    <section id="about" className="section-padding bg-slate-900 relative overflow-hidden">
+      {/* Decorative Background - Dark Theme */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-purple-300/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-br from-purple-200/20 to-pink-300/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
@@ -79,7 +79,7 @@ const About = () => {
               👨‍💻
             </motion.div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">About Me</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
               Software engineer specializing in AI/ML, mobile development, and embedded systems. 
               Passionate about building innovative solutions that make a real impact.
             </p>
@@ -90,16 +90,16 @@ const About = () => {
             
             {/* Left Column - Journey & Philosophy */}
             <motion.div variants={itemVariants} className="space-y-8">
-              <div className="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+              <div className="trust-card p-8 rounded-3xl">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
                     <Heart size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+                  <h3 className="text-2xl font-bold text-slate-200">
                     My Journey
                   </h3>
                 </div>
-                <div className="space-y-4 text-slate-600 dark:text-slate-400">
+                <div className="space-y-4 text-slate-300">
                   <p className="leading-relaxed">
                     I bridge theoretical knowledge with practical solutions - from automated learning systems 
                     to full-stack IoT applications with real-time data processing.
@@ -117,7 +117,7 @@ const About = () => {
                   <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 text-white">
                     <Award size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+                  <h3 className="text-2xl font-bold text-slate-200">
                     Core Strengths
                   </h3>
                 </div>
@@ -127,7 +127,7 @@ const About = () => {
                       key={strength.title}
                       variants={itemVariants}
                       whileHover={{ scale: 1.02, x: 5 }}
-                      className="group flex items-start gap-4 p-6 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                      className="group flex items-start gap-4 p-6 rounded-2xl trust-card hover:border-blue-400/50 transition-all duration-300"
                     >
                       <div className="relative">
                         <div className={`p-3 rounded-xl bg-gradient-to-r ${strength.color} text-white group-hover:scale-110 transition-transform duration-300`}>
@@ -138,10 +138,10 @@ const About = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                        <h4 className="font-semibold text-slate-200 mb-2">
                           {strength.title}
                         </h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p className="text-sm text-slate-300 leading-relaxed">
                           {strength.description}
                         </p>
                       </div>
@@ -153,16 +153,16 @@ const About = () => {
 
             {/* Right Column - Approach & Values */}
             <motion.div variants={itemVariants} className="space-y-8">
-              <div className="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+              <div className="trust-card p-8 rounded-3xl">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
                     <Rocket size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+                  <h3 className="text-2xl font-bold text-slate-200">
                     My Approach
                   </h3>
                 </div>
-                <div className="space-y-4 text-slate-600 dark:text-slate-400">
+                <div className="space-y-4 text-slate-300">
                   <p className="leading-relaxed">
                     I believe in clean, maintainable code and continuous learning. My focus is on 
                     bridging complex technical concepts with practical user needs.
@@ -179,28 +179,28 @@ const About = () => {
               </div>
 
               {/* Education */}
-              <div className="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+              <div className="trust-card p-8 rounded-3xl">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white">
                     <BookOpen size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+                  <h3 className="text-2xl font-bold text-slate-200">
                     Education & Learning
                   </h3>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200">
+                    <h4 className="text-lg font-bold text-slate-200">
                       Bahçeşehir University
                     </h4>
-                    <p className="text-slate-700 dark:text-slate-300 font-medium">B.Sc. in Software Engineering</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">2021 - 2025</p>
+                    <p className="text-slate-300 font-medium">B.Sc. in Software Engineering</p>
+                    <p className="text-sm text-slate-400">2021 - 2025</p>
                   </div>
-                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  <div className="pt-4 border-t border-slate-600/50">
+                    <p className="text-sm text-slate-400 mb-3">
                       <strong>Certifications:</strong>
                     </p>
-                    <div className="grid gap-2 text-sm text-slate-700 dark:text-slate-300">
+                    <div className="grid gap-2 text-sm text-slate-300">
                       <span>• UX Design (Coursera)</span>
                       <span>• Project Management (Coursera)</span>
                       <span>• Azure Fundamentals</span>

@@ -30,9 +30,12 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
+      {/* Consistent Dark Background Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-0"></div>
+      
       {/* Professional Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-10">
         {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
@@ -57,7 +60,7 @@ const Hero = () => {
       </div>
 
       {/* Floating Professional Icons */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
         <motion.div
           animate={{
             x: [0, 25, 0],
@@ -101,7 +104,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <div className="container-custom section-padding">
+      <div className="container-custom section-padding relative z-20">
         <motion.div
           variants={containerVariants}
           initial="hidden"
