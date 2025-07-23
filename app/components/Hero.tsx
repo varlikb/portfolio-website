@@ -116,20 +116,20 @@ const Hero = () => {
             >
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 p-1 shadow-2xl">
                 <div className="w-full h-full rounded-full bg-slate-50 dark:bg-slate-900 flex items-center justify-center overflow-hidden">
-                  {/* Replace this div with your actual photo */}
-                  <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-slate-700 dark:to-slate-600 rounded-full flex items-center justify-center text-4xl">
-                    👨‍💻
-                  </div>
-                  {/* 
-                  Uncomment and use this when you add your photo:
+                  {/* Profile Photo - Now using your uploaded photo! */}
                   <Image
-                    src="/profile-photo.jpg"
-                    alt="Talha Bilal Varlık"
+                    src="/profile/profile-picture.jpeg"
+                    alt="Talha Bilal Varlık - Software Engineer"
                     width={120}
                     height={120}
                     className="w-full h-full object-cover rounded-full"
                     priority
                   />
+                  
+                  {/* Emoji fallback - no longer needed since you have your photo!
+                  <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-slate-700 dark:to-slate-600 rounded-full flex items-center justify-center text-4xl">
+                    👨‍💻
+                  </div>
                   */}
                 </div>
               </div>
