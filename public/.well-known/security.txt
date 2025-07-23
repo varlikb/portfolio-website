@@ -1,0 +1,22 @@
+Contact: mailto:varlikbbusiness@gmail.com
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://keybase.io/varlikb/pgp_keys.asc
+Preferred-Languages: en, tr
+Canonical: https://talhabilalvarlik.dev/.well-known/security.txt
+Policy: https://talhabilalvarlik.dev/security-policy
+Acknowledgments: https://talhabilalvarlik.dev/security-acknowledgments
+
+# Responsible Disclosure Guidelines
+# 
+# If you discover a security vulnerability, please:
+# 1. Contact us via the provided email
+# 2. Allow reasonable time for response (72 hours)
+# 3. Do not access, modify, or delete data
+# 4. Do not perform any actions that could harm users
+# 5. Do not disclose the vulnerability publicly until resolved
+#
+# We appreciate responsible security researchers and will:
+# - Respond to your report within 72 hours
+# - Work with you to understand and resolve the issue
+# - Acknowledge your contribution (with permission)
+# - Not pursue legal action for good-faith security research 
