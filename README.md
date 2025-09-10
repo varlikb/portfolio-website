@@ -1,11 +1,5 @@
 # Talha Bilal Varlık - Portfolio Website
 
-A stunning, modern portfolio website built with cutting-edge web technologies to showcase technical projects, research work, and professional experience.
-
-## 🚀 Live Demo
-
-[Visit Portfolio Website](https://your-portfolio-domain.com)
-
 ## ✨ Features
 
 - **Modern Design**: Beautiful, responsive design with smooth animations
@@ -89,12 +83,6 @@ colors: {
 }
 ```
 
-### Content
-Update the content in each component:
-- **Personal Info**: Update name, title, and description in `Hero.tsx`
-- **Projects**: Modify project data in `Projects.tsx`
-- **Skills**: Update skills and technologies in `About.tsx`
-- **Contact**: Update contact information in `Contact.tsx`
 
 ### Animations
 Framer Motion animations can be customized in each component. Common patterns:
@@ -103,18 +91,6 @@ Framer Motion animations can be customized in each component. Common patterns:
 - `variants`: Reusable animation objects
 - `transition`: Timing and easing
 
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Automatic deployments on every push
-
-### Other Platforms
-- **Netlify**: Drag and drop the `dist` folder
-- **AWS S3**: Upload static files after `npm run build`
-- **GitHub Pages**: Use GitHub Actions for deployment
-
 ## 📊 Performance
 
 - **Lighthouse Score**: 95+ across all metrics
@@ -122,62 +98,9 @@ Framer Motion animations can be customized in each component. Common patterns:
 - **Largest Contentful Paint**: < 2.5s
 - **Cumulative Layout Shift**: < 0.1
 
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 640px
-- **Tablet**: 640px - 1024px
-- **Desktop**: > 1024px
-- **Large Desktop**: > 1280px
-
-## 🎯 Key Sections
-
-1. **Hero Section**: Eye-catching introduction with animated text and call-to-action
-2. **About Section**: Personal story, skills, and what sets you apart
-3. **Projects Section**: Detailed showcase of technical projects with results
-4. **Contact Section**: Professional contact information and collaboration interests
-
-## 🛡 Best Practices
-
-- **Component Structure**: Each section is a separate component for maintainability
-- **Performance**: Images are optimized, animations are GPU-accelerated
-- **Accessibility**: Semantic HTML, ARIA labels, keyboard navigation
-- **SEO**: Meta tags, structured data, optimized URLs
-- **Code Quality**: TypeScript, ESLint, consistent formatting
-
-## 📈 Analytics (Optional)
-
-To add analytics:
-1. Install your preferred analytics library
-2. Add the tracking code to `layout.tsx`
-3. Set up event tracking for interactions
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 🙏 Acknowledgments
 
 - Design inspiration from modern portfolio trends
 - Icons from [Lucide React](https://lucide.dev/)
 - Fonts from [Google Fonts](https://fonts.google.com/)
 - Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-**Built with ❤️ by Talha Bilal Varlık**
-
-*Passionate about bridging theory and practice in computer science.* 
