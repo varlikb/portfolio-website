@@ -89,6 +89,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
+        <meta name="google-site-verification" content="g6D8VTJhgGAVGDi1WtH-X4Db9FW1ApLf2lmv9rRhzhw" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="canonical" href="https://www.talhabvarlik.com" />
         <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
