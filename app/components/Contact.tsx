@@ -46,29 +46,49 @@ const Contact = () => {
 
   const opportunities = [
     { title: "AI/ML Projects", description: "Machine learning solutions and algorithm optimization", symbol: "◈" },
-    { title: "IoT & Embedded Systems", description: "Smart device development and sensor integration", symbol: "◇" },
-    { title: "Full-Stack Development", description: "End-to-end application development", symbol: "○" },
-    { title: "Research & Innovation", description: "Academic collaboration and algorithm design", symbol: "△" }
+    { title: "IoT & Embedded", description: "Smart device development", symbol: "◇" },
+    { title: "Full-Stack Dev", description: "End-to-end applications", symbol: "○" },
+    { title: "Research", description: "Academic collaboration", symbol: "△" }
   ]
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="py-12 md:py-20 px-4">
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={containerVariants}>
           {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <div className="text-4xl mb-6 text-white/20">◎</div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Let's Connect</h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Ready to collaborate on innovative projects? I'm always open to discussing new opportunities.
+          <motion.div variants={itemVariants} className="text-center mb-8 md:mb-12">
+            <div className="text-2xl md:text-4xl mb-3 md:mb-6 text-white/20">◎</div>
+            <h2 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4 gradient-text">Let's Connect</h2>
+            <p className="text-xs md:text-lg text-gray-400 max-w-3xl mx-auto">
+              Ready to collaborate on innovative projects?
             </p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            {/* Contact Methods */}
-            <motion.div variants={itemVariants} className="mb-12">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">Get In Touch</h3>
-              <div className="grid sm:grid-cols-3 gap-4">
+            {/* Contact Methods - Horizontal on mobile */}
+            <motion.div variants={itemVariants} className="mb-6 md:mb-12">
+              <h3 className="text-sm md:text-xl font-bold text-white mb-3 md:mb-6 text-center">Get In Touch</h3>
+              
+              {/* Mobile: Compact horizontal layout */}
+              <div className="flex md:hidden gap-2 justify-center">
+                {contactMethods.map((method) => (
+                  <motion.a
+                    key={method.label}
+                    href={method.href}
+                    {...(method.external ? getSecureExternalLinkProps(method.href) : {})}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex flex-col items-center gap-1.5 p-3 trust-card rounded-xl flex-1 max-w-[100px]"
+                  >
+                    <div className="p-2 bg-white/10 text-white rounded-lg border border-white/10">
+                      <method.icon size={16} />
+                    </div>
+                    <span className="text-[10px] text-gray-400">{method.label}</span>
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Desktop: Original layout */}
+              <div className="hidden md:grid md:grid-cols-3 gap-4">
                 {contactMethods.map((method) => (
                   <motion.a
                     key={method.label}
@@ -94,8 +114,26 @@ const Contact = () => {
 
             {/* Collaboration Opportunities */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">Collaboration Opportunities</h3>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <h3 className="text-sm md:text-xl font-bold text-white mb-3 md:mb-6 text-center">Collaboration</h3>
+              
+              {/* Mobile: 2x2 compact grid */}
+              <div className="grid grid-cols-2 gap-2 md:hidden">
+                {opportunities.map((opportunity) => (
+                  <div
+                    key={opportunity.title}
+                    className="p-3 trust-card rounded-lg"
+                  >
+                    <h4 className="font-semibold text-white text-[11px] mb-1 flex items-center gap-1">
+                      <span className="text-white/30 text-[10px]">{opportunity.symbol}</span>
+                      {opportunity.title}
+                    </h4>
+                    <p className="text-gray-500 text-[9px] leading-tight">{opportunity.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: Original layout */}
+              <div className="hidden md:grid md:grid-cols-2 gap-4">
                 {opportunities.map((opportunity) => (
                   <motion.div
                     key={opportunity.title}
@@ -113,10 +151,10 @@ const Contact = () => {
             </motion.div>
 
             {/* Location */}
-            <motion.div variants={itemVariants} className="mt-12 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 text-gray-400">
-                <MapPin size={16} />
-                <span>Based in Istanbul, Turkey</span>
+            <motion.div variants={itemVariants} className="mt-6 md:mt-12 text-center">
+              <div className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-white/5 rounded-full border border-white/10 text-gray-400 text-xs md:text-base">
+                <MapPin size={12} className="md:w-4 md:h-4" />
+                <span>Istanbul, Turkey</span>
               </div>
             </motion.div>
           </div>

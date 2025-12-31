@@ -252,6 +252,21 @@ body {
   }
 }
 
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch scroll optimization */
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
 @layer components {
   .btn-primary {
     @apply relative overflow-hidden bg-white text-black font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105;

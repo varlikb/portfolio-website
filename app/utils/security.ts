@@ -55,7 +55,12 @@ export const isSecureExternalUrl = (url: string): boolean => {
       'github.com',
       'linkedin.com',
       'drive.google.com',
-      'cdn.jsdelivr.net'
+      'cdn.jsdelivr.net',
+      // Reference project domains
+      'maslakliz.com',
+      'setgarage.net',
+      'autohaus-intermobil.de',
+      'neylamaslak.com'
     ];
     
     return allowedDomains.some(domain => 

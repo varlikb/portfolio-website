@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV === 'development'
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -32,7 +34,7 @@ const nextConfig = {
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               img-src 'self' data: https: blob:;
               font-src 'self' https://fonts.gstatic.com;
-              connect-src 'self' https:;
+              connect-src 'self' https: ${isDev ? 'ws: wss:' : ''};
               frame-src 'none';
               object-src 'none';
               base-uri 'self';

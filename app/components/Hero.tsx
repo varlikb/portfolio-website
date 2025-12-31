@@ -145,20 +145,20 @@ const Hero = () => {
             
             {/* Title with animated line */}
             <motion.div
-              className="flex justify-center items-center space-x-4"
+              className="flex justify-center items-center gap-2 sm:gap-4"
               variants={itemVariants}
             >
               <motion.div 
-                className="h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                className="hidden sm:block h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: 80 }}
                 transition={{ delay: 1, duration: 0.8 }}
               />
-              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light tracking-wide">
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light tracking-wide text-center">
                 AI/ML Software Engineer
               </p>
               <motion.div 
-                className="h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                className="hidden sm:block h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: 80 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -167,9 +167,9 @@ const Hero = () => {
           </motion.div>
 
           {/* Description Card with Spotlight Effect */}
-          <motion.div variants={itemVariants} className="max-w-4xl mx-auto px-4 sm:px-0">
-            <div className="trust-card spotlight-card p-8 rounded-2xl">
-              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed">
+          <motion.div variants={itemVariants} className="max-w-4xl mx-auto px-2 sm:px-4">
+            <div className="trust-card spotlight-card p-4 sm:p-6 lg:p-8 rounded-2xl">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                 Recent Software Engineering graduate with expertise in{' '}
                 <span className="text-white font-medium">AI/ML</span>,{' '}
                 <span className="text-white font-medium">embedded systems</span>, and{' '}
@@ -180,7 +180,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Skills with Hover Effect */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto px-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto px-2 sm:px-4">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.text}
@@ -188,7 +188,7 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -3 }}
-                className="skill-badge flex items-center space-x-2 cursor-default"
+                className="skill-badge flex items-center space-x-1 sm:space-x-2 cursor-default text-xs sm:text-sm"
               >
                 <span className="text-white/60">{skill.icon}</span>
                 <span>{skill.text}</span>
@@ -238,7 +238,7 @@ const Hero = () => {
           {/* Stats with Float Animation */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto px-4"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-4xl mx-auto px-2 sm:px-4"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -247,17 +247,17 @@ const Hero = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -4 }}
-                className="trust-card text-center p-6 rounded-2xl group cursor-default"
+                className="trust-card text-center p-4 sm:p-6 rounded-2xl group cursor-default"
               >
                 <motion.div
-                  className="text-2xl mb-3 text-white/40 group-hover:text-white/60 transition-colors"
+                  className="text-xl sm:text-2xl mb-2 sm:mb-3 text-white/40 group-hover:text-white/60 transition-colors"
                 >
                   {stat.icon}
                 </motion.div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-2">
                   {stat.number}
                 </div>
-                <div className="text-sm text-gray-400 font-medium">
+                <div className="text-xs sm:text-sm text-gray-400 font-medium">
                   {stat.label}
                 </div>
               </motion.div>
@@ -270,7 +270,7 @@ const Hero = () => {
             className="flex flex-col items-center gap-4 pt-8"
           >
             <p className="text-[10px] uppercase tracking-[0.4em] text-gray-500 font-mono">
-              Türkiye Yerel Saati
+              Local Time in Turkey
             </p>
             <OrbitalClock />
           </motion.div>

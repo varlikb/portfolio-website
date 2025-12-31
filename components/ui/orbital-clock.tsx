@@ -4,17 +4,21 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 
 export function OrbitalClock() {
-  const [time, setTime] = useState(new Date())
+  const [time, setTime] = useState<Date | null>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Türkiye saati (UTC+3)
+    // Set initial time on client
+    const getTurkeyTime = () => {
       const now = new Date()
-      const turkeyTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Istanbul" }))
-      setTime(turkeyTime)
+      return new Date(now.toLocaleString("en-US", { timeZone: "Europe/Istanbul" }))
+    }
+    setTime(getTurkeyTime())
+    
+    const interval = setInterval(() => {
+      setTime(getTurkeyTime())
     }, 50)
     return () => clearInterval(interval)
   }, [])
@@ -27,20 +31,38 @@ export function OrbitalClock() {
     setMousePos({ x: x * 8, y: y * 8 })
   }
 
-  const seconds = time.getSeconds() + time.getMilliseconds() / 1000
-  const minutes = time.getMinutes() + seconds / 60
-  const hours = (time.getHours() % 12) + minutes / 60
+  const seconds = time ? time.getSeconds() + time.getMilliseconds() / 1000 : 0
+  const minutes = time ? time.getMinutes() + seconds / 60 : 0
+  const hours = time ? (time.getHours() % 12) + minutes / 60 : 0
 
   const secondDeg = seconds * 6
   const minuteDeg = minutes * 6
   const hourDeg = hours * 30
 
   const formatDate = () => {
+    if (!time) return ""
     return time.toLocaleDateString("en-US", {
       weekday: "short",
       month: "short",
       day: "numeric",
     })
+  }
+
+  // Don't render clock hands until client-side hydration is complete
+  if (!time) {
+    return (
+      <div
+        ref={containerRef}
+        className="relative flex items-center justify-center cursor-pointer select-none"
+        style={{ perspective: "600px" }}
+      >
+        <div className="relative w-52 h-52">
+          <div className="absolute inset-2 rounded-full bg-white/[0.03] border border-white/10 shadow-xl backdrop-blur-sm">
+            <div className="absolute inset-3 rounded-full border border-white/5" />
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (

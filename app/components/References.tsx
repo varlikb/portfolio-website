@@ -71,20 +71,107 @@ const References = () => {
   }
 
   return (
-    <section id="references" className="section-padding bg-black/20">
-      <div className="container-custom">
+    <section id="references" className="section-padding bg-black/20 overflow-x-hidden">
+      <div className="container-custom overflow-hidden">
         <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={containerVariants}>
           {/* Header */}
-          <motion.div variants={cardVariants} className="text-center mb-16">
-            <div className="text-4xl mb-6 text-white/20">◎</div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 gradient-text">Client Work</h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+          <motion.div variants={cardVariants} className="text-center mb-8 md:mb-16">
+            <div className="text-3xl md:text-4xl mb-4 md:mb-6 text-white/20">◎</div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-6 gradient-text">Client Work</h2>
+            <p className="text-sm md:text-lg text-gray-400 max-w-3xl mx-auto px-4">
               Websites and digital solutions developed for real businesses.
             </p>
           </motion.div>
 
-          {/* References Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* References - Mobile Horizontal Scroll / Desktop Grid */}
+          {/* Mobile horizontal scroll */}
+          <div className="md:hidden overflow-hidden">
+            <div className="flex gap-4 overflow-x-scroll overflow-y-hidden pb-4 snap-x snap-mandatory scrollbar-hide touch-pan-x">
+              {references.map((reference) => (
+                <motion.div
+                  key={reference.id}
+                  variants={cardVariants}
+                  className="flex-shrink-0 w-[280px] snap-center group relative overflow-hidden rounded-xl trust-card"
+                >
+                  {/* Image / Preview */}
+                  <div className="relative h-36 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+                    <Image
+                      src={reference.image}
+                      alt={reference.title}
+                      fill
+                      className="object-cover object-top"
+                    />
+                    {/* Browser mockup frame */}
+                    <div className="absolute top-2 left-2 right-2 flex items-center gap-1 z-20">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                      <div className="flex-1 ml-1.5 h-3 rounded bg-black/30 backdrop-blur-sm flex items-center px-1.5">
+                        <span className="text-[7px] text-white/50 truncate">{reference.url.replace('https://', '')}</span>
+                      </div>
+                    </div>
+                    {/* Category Badge */}
+                    <div className="absolute bottom-2 left-2 z-20">
+                      <span className="bg-white/10 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-0.5 rounded-full border border-white/20">
+                        {reference.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-3 space-y-2">
+                    {/* Client & Year */}
+                    <div className="flex items-center justify-between text-[10px] text-gray-500">
+                      <div className="flex items-center gap-1">
+                        <Building2 size={10} />
+                        <span>{reference.client}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Calendar size={10} />
+                        <span>{reference.year}</span>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-sm font-bold text-white">{reference.title}</h3>
+
+                    {/* Description */}
+                    <p className="text-gray-400 text-[10px] line-clamp-2">{reference.description}</p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-1">
+                      {reference.technologies.slice(0, 2).map((tech) => (
+                        <span key={tech} className="px-1.5 py-0.5 text-[9px] text-gray-400 bg-white/[0.03] rounded border border-white/10">
+                          {tech}
+                        </span>
+                      ))}
+                      {reference.technologies.length > 2 && (
+                        <span className="px-1.5 py-0.5 text-[9px] text-gray-500 bg-white/[0.03] rounded border border-white/10">
+                          +{reference.technologies.length - 2}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Visit Button */}
+                    <a
+                      href={reference.url}
+                      {...getSecureExternalLinkProps(reference.url)}
+                      className="w-full mt-2 btn-primary inline-flex items-center justify-center gap-1.5 py-2 text-xs"
+                    >
+                      <Globe size={12} />
+                      <span>Visit</span>
+                      <ExternalLink size={10} />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+              <div className="flex-shrink-0 w-4" aria-hidden="true" />
+            </div>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {references.map((reference) => (
               <motion.div
                 key={reference.id}
@@ -189,15 +276,15 @@ const References = () => {
           )}
 
           {/* CTA */}
-          <motion.div variants={cardVariants} className="text-center mt-16">
-            <div className="trust-card rounded-2xl p-8">
-              <div className="text-3xl mb-4 text-white/20">◎</div>
-              <h3 className="text-2xl font-bold text-white mb-4">Have a Project?</h3>
-              <p className="text-gray-400 mb-6">Let's create a modern website for your business.</p>
+          <motion.div variants={cardVariants} className="text-center mt-10 md:mt-16">
+            <div className="trust-card rounded-xl md:rounded-2xl p-6 md:p-8">
+              <div className="text-2xl md:text-3xl mb-3 md:mb-4 text-white/20">◎</div>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Have a Project?</h3>
+              <p className="text-sm md:text-base text-gray-400 mb-4 md:mb-6">Let's create a modern website for your business.</p>
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
-                className="btn-primary inline-flex items-center gap-2"
+                className="btn-primary inline-flex items-center gap-2 text-sm md:text-base"
               >
                 <span>Get in Touch</span>
               </motion.a>

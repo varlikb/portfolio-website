@@ -310,10 +310,10 @@ const About = () => {
       <div className="container-custom relative z-10">
         <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={containerVariants}>
           {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="text-4xl mb-6 text-white/20">◎</div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">About Me</h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16">
+            <div className="text-3xl md:text-4xl mb-4 md:mb-6 text-white/20">◎</div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 gradient-text">About Me</h2>
+            <p className="text-sm md:text-lg text-gray-400 max-w-2xl mx-auto px-4">
               Explore my background, skills, and experience
             </p>
           </motion.div>
@@ -323,9 +323,9 @@ const About = () => {
             {/* Left - Profile Card & File Tree */}
             <div className="lg:col-span-2 space-y-6">
               {/* Mini Profile */}
-              <div className="trust-card rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="relative w-16 h-16">
+              <div className="trust-card rounded-2xl p-4 sm:p-6">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                     <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20">
                       <Image
                         src="/profile/profile-picture.jpeg"
@@ -336,18 +336,49 @@ const About = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Talha Bilal Varlık</h3>
-                    <p className="text-sm text-gray-400">Software Engineer</p>
+                    <h3 className="text-base sm:text-lg font-bold text-white">Talha Bilal Varlık</h3>
+                    <p className="text-xs sm:text-sm text-gray-400">Software Engineer</p>
                     <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
                       <MapPin size={10} />
                       <span>Istanbul, Turkey</span>
                     </div>
                   </div>
                 </div>
+                
+                {/* Mobile Quick Nav - Grid Layout */}
+                <div className="lg:hidden mt-4 pt-4 border-t border-white/10">
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { id: 'overview', label: 'Overview' },
+                      { id: 'education', label: 'Education' },
+                      { id: 'fullstack', label: 'Full-Stack' },
+                      { id: 'ai-ml', label: 'AI/ML' },
+                      { id: 'iot', label: 'IoT' },
+                      { id: 'leadership', label: 'Leadership' },
+                      { id: 'journey', label: 'Journey' },
+                      { id: 'approach', label: 'Approach' },
+                      { id: 'ux-cert', label: 'UX Cert' },
+                      { id: 'pm-cert', label: 'PM Cert' },
+                      { id: 'azure-cert', label: 'Azure' },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => setSelectedItem(item.id)}
+                        className={`px-2 py-1.5 text-[10px] rounded-lg transition-all text-center ${
+                          selectedItem === item.id 
+                            ? 'bg-white/20 text-white' 
+                            : 'bg-white/5 text-gray-400'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* File Tree */}
-              <div className="trust-card rounded-2xl p-4 h-[400px]">
+              {/* File Tree - Hidden on mobile */}
+              <div className="hidden lg:block trust-card rounded-2xl p-4 h-[400px]">
                 <div className="flex items-center gap-2 mb-4 px-2">
                   <FolderOpen size={16} className="text-white/40" />
                   <span className="text-sm text-gray-400">Explorer</span>
@@ -405,7 +436,7 @@ const About = () => {
 
             {/* Right - Content Display */}
             <div className="lg:col-span-3">
-              <div className="trust-card rounded-2xl p-6 min-h-[500px]">
+              <div className="trust-card rounded-2xl p-4 sm:p-6 min-h-[400px] lg:min-h-[500px]">
                 {/* File Header */}
                 <div className="flex items-center gap-3 pb-4 mb-4 border-b border-white/10">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
@@ -435,7 +466,7 @@ const About = () => {
               </div>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6">
                 <motion.a 
                   href="#projects" 
                   whileHover={{ scale: 1.02 }} 

@@ -114,7 +114,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Stats */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-12">
             {[
               { icon: "◆", number: "2+", label: "Years Experience" },
               { icon: "◇", number: "20+", label: "Technologies" },
@@ -124,45 +124,45 @@ const Skills = () => {
               <motion.div
                 key={stat.label}
                 whileHover={{ scale: 1.05 }}
-                className="text-center p-6 rounded-2xl trust-card group cursor-default"
+                className="text-center p-4 sm:p-6 rounded-2xl trust-card group cursor-default"
               >
-                <div className="text-2xl mb-2 text-white/30 group-hover:text-white/50 transition-colors">{stat.icon}</div>
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-1">{stat.number}</div>
-                <div className="text-xs lg:text-sm text-gray-500">{stat.label}</div>
+                <div className="text-xl sm:text-2xl mb-2 text-white/30 group-hover:text-white/50 transition-colors">{stat.icon}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">{stat.number}</div>
+                <div className="text-[10px] sm:text-xs lg:text-sm text-gray-500">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
 
           {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-8 mb-16">
             {skillCategories.map((category, index) => (
-              <motion.div key={category.title} variants={itemVariants} className="trust-card p-6 lg:p-8 rounded-2xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-4 rounded-xl bg-white/10 text-white/60 text-2xl border border-white/10">
+              <motion.div key={category.title} variants={itemVariants} className="trust-card p-4 sm:p-6 lg:p-8 rounded-2xl">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/10 text-white/60 text-xl sm:text-2xl border border-white/10">
                     {category.symbol}
                   </div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-white">{category.title}</h3>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">{category.title}</h3>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {category.skills.map((skill) => (
                     <motion.div
                       key={skill.name}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex flex-col items-center p-4 bg-white/[0.02] rounded-xl border border-white/5 hover:bg-white/[0.05] hover:border-white/10 transition-all group"
+                      className="flex flex-col items-center p-2 sm:p-4 bg-white/[0.02] rounded-xl border border-white/5 hover:bg-white/[0.05] hover:border-white/10 transition-all group"
                     >
-                      <div className="w-12 h-12 mb-3 flex items-center justify-center">
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 mb-2 sm:mb-3 flex items-center justify-center">
                         <Image
                           src={skill.logo}
                           alt={skill.name}
                           width={40}
                           height={40}
                           unoptimized
-                          className="group-hover:scale-110 transition-transform grayscale group-hover:grayscale-0"
+                          className="w-6 h-6 sm:w-10 sm:h-10 group-hover:scale-110 transition-transform grayscale group-hover:grayscale-0"
                         />
                       </div>
-                      <span className="text-sm font-medium text-gray-300 text-center mb-2">{skill.name}</span>
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full border ${getLevelStyle(skill.level)}`}>
+                      <span className="text-[10px] sm:text-sm font-medium text-gray-300 text-center mb-1 sm:mb-2">{skill.name}</span>
+                      <span className={`hidden sm:inline-block px-2 py-1 text-xs font-medium rounded-full border ${getLevelStyle(skill.level)}`}>
                         {skill.level}
                       </span>
                     </motion.div>

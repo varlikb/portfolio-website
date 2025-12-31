@@ -35,6 +35,7 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
             src={logo.src}
             width={logo.width || 100}
             unoptimized
+            style={{ width: 'auto', height: 'auto' }}
           />
         ))}
       </InfiniteSlider>
