@@ -116,7 +116,7 @@ const Skills = () => {
           {/* Stats */}
           <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-12">
             {[
-              { icon: "◆", number: "2+", label: "Years Experience" },
+              { icon: "◆", number: "3+", label: "Years Experience" },
               { icon: "◇", number: "20+", label: "Technologies" },
               { icon: "○", number: "6", label: "Team Leadership" },
               { icon: "△", number: "15+", label: "Projects" }

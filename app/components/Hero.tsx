@@ -78,7 +78,7 @@ const Hero = () => {
   ]
 
   const stats = [
-    { number: "4+", label: "Years Experience", icon: "◆" },
+    { number: "3+", label: "Years Experience", icon: "◆" },
     { number: "1", label: "Research Paper", icon: "◇" },
     { number: "20+", label: "Technologies", icon: "○" },
     { number: "6", label: "Team Size Led", icon: "△" }
