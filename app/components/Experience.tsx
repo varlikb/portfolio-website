@@ -1,15 +1,15 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Briefcase, Calendar, MapPin, Users, TrendingUp, Code, Database, Globe, ChevronRight } from 'lucide-react'
+import { Calendar, MapPin, TrendingUp, ChevronRight, Users, Rocket } from 'lucide-react'
 import Image from 'next/image'
+import ReflectiveCard from '@/components/ui/reflective-card'
 
 const Experience = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [activeExp, setActiveExp] = useState(0)
 
   const experiences = [
     {
@@ -19,47 +19,36 @@ const Experience = () => {
       location: "Istanbul, Turkey",
       period: "Jan 2025 - Jun 2025",
       type: "Internship",
-      description: "Led development of automated learning management systems with focus on SCORM-to-xAPI conversion and real-time tracking dashboards.",
+      description: "Led development of automated learning management systems with focus on SCORM-to-xAPI conversion.",
       achievements: [
-        "Engineered automated SCORM-to-xAPI conversion pipeline using C# and .NET, reducing processing time by 30%",
-        "Developed real-time tracking dashboards with AJAX integration for 10,000+ learning sessions", 
-        "Optimized content management workflows achieving 25% faster upload speeds through database optimization",
-        "Maintained 99.9% uptime for LMS deployments across multiple client environments"
+        "Engineered automated SCORM-to-xAPI conversion pipeline, reducing processing time by 30%",
+        "Developed real-time tracking dashboards for 10,000+ learning sessions",
+        "Optimized content management workflows achieving 25% faster upload speeds",
+        "Maintained 99.9% uptime for LMS deployments"
       ],
-      technologies: [
-        { name: "C#", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-        { name: ".NET", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
-        { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "SQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "AJAX", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "SCORM", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" }
-      ],
-      color: "from-blue-500 to-indigo-600",
-      companyLogo: "/companies/Tongucworks-logo.jpeg"
+      technologies: ["C#", ".NET", "JavaScript", "SQL Server"],
+      companyLogo: "/companies/Tongucworks-logo.jpeg",
+      gradient: { from: '#1a1a2e', to: '#16213e' },
+      stats: { impact: "30%", sessions: "10K+", uptime: "99.9%" }
     },
     {
       id: 2,
       title: "Social Media Manager / Software Development Intern",
       company: "Sellmify",
-      location: "Istanbul, Turkey", 
+      location: "Istanbul, Turkey",
       period: "Mar 2023 - Dec 2023",
       type: "Internship",
-      description: "Combined social media management with software development, leading UX/UI improvements and cross-platform optimization initiatives.",
+      description: "Combined social media management with software development, leading UX/UI improvements.",
       achievements: [
-        "Led multidisciplinary team of 4 developers implementing UX/UI improvements, increasing engagement by 40%",
-        "Conducted competitor analysis and A/B testing informing strategic product roadmap decisions",
-        "Contributed to React Native development cycles with responsive design and cross-platform optimization", 
-        "Managed agile sprint planning ensuring consistent delivery of high-quality features"
+        "Led team of 4 developers implementing UX/UI improvements, increasing engagement by 40%",
+        "Conducted competitor analysis and A/B testing informing strategic decisions",
+        "Contributed to React Native development with responsive design",
+        "Managed agile sprint planning ensuring consistent delivery"
       ],
-      technologies: [
-        { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-        { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-        { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" }
-      ],
-      color: "from-green-500 to-teal-600",
-      companyLogo: "/companies/sellmify-logo .jpg"
+      technologies: ["React Native", "JavaScript", "Figma", "Node.js"],
+      companyLogo: "/companies/sellmify-logo .jpg",
+      gradient: { from: '#1e1e2f', to: '#2d1b4e' },
+      stats: { engagement: "40%", team: "4 devs", sprints: "Agile" }
     }
   ]
 
@@ -67,245 +56,227 @@ const Experience = () => {
     {
       title: "Team Lead - University AI/IoT Project",
       period: "2023 - 2024",
-      description: "Led development of ESP32-based smart sensor systems integrating real-time data with cloud platforms. Coordinated 3-person team implementing Q-learning algorithms and custom hardware interfaces.",
-      technologies: [
-        { name: "ESP32", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" },
-        { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-        { name: "IoT", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" },
-        { name: "Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" }
-      ],
-      icon: "🔧"
+      description: "Led development of ESP32-based smart sensor systems integrating real-time data with cloud platforms.",
+      icon: Rocket
     },
     {
-      title: "Research Initiative Leader - Algorithm Design Projects", 
+      title: "Research Initiative Leader",
       period: "2022 - Present",
-      description: "Independently designed and implemented from-scratch solutions for NP-complete problems including search algorithms (A*, UCS) and machine learning models (Naive Bayes, Decision Trees, Perceptron).",
-      technologies: [
-        { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-        { name: "NumPy", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-        { name: "Jupyter", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
-        { name: "Research", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
-      ],
-      icon: "🧠"
+      description: "Independently designed solutions for NP-complete problems including search algorithms and ML models.",
+      icon: TrendingUp
     }
   ]
 
+  const currentExp = experiences[activeExp]
+
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   }
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
   }
 
   return (
-    <section id="experience" className="section-padding bg-slate-900">
+    <section id="experience" className="section-padding">
       <div className="container-custom">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          {/* Section Header */}
+        <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={containerVariants}>
+          {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
+            <div className="text-4xl mb-6 text-white/20">◎</div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Professional Experience</h2>
-            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-              From software development internships to leading cross-functional teams, 
-              here's my journey in building innovative solutions and driving technical excellence.
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+              From software development internships to leading cross-functional teams.
             </p>
           </motion.div>
 
-          {/* Professional Experience */}
-          <div className="space-y-8 mb-16">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={exp.id}
-                variants={itemVariants}
-                className="group relative overflow-hidden rounded-3xl trust-card hover:border-blue-400/50 transition-all duration-500"
-              >
-                {/* Background Gradient - More subtle */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${exp.color} opacity-[0.02] group-hover:opacity-[0.04] transition-opacity duration-500`} />
-                
-                <div className="relative z-10 p-8">
-                  <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Left Column - Company Info */}
-                    <div className="space-y-6">
+          {/* Main Experience Section */}
+          <motion.div variants={itemVariants} className="grid lg:grid-cols-5 gap-8 mb-16">
+            {/* Left - Experience Cards */}
+            <div className="lg:col-span-2 space-y-4">
+              {experiences.map((exp, idx) => (
+                <motion.div
+                  key={exp.id}
+                  whileHover={{ x: 8 }}
+                  onClick={() => setActiveExp(idx)}
+                  className={`cursor-pointer transition-all duration-300 ${activeExp === idx ? 'scale-[1.02]' : 'opacity-70 hover:opacity-100'}`}
+                >
+                  <ReflectiveCard
+                    gradientFrom={exp.gradient.from}
+                    gradientTo={exp.gradient.to}
+                    metalness={activeExp === idx ? 0.9 : 0.5}
+                    roughness={0.3}
+                    className="w-full"
+                  >
+                    <div className="p-6">
                       <div className="flex items-start gap-4">
-                        {/* Company Logo */}
-                        <motion.div
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          className="p-2 rounded-2xl bg-slate-700/50 shadow-lg border border-slate-600/50"
-                        >
-                          <div className="w-14 h-14 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl flex items-center justify-center overflow-hidden">
-                            <Image
-                              src={exp.companyLogo}
-                              alt={`${exp.company} logo`}
-                              width={48}
-                              height={48}
-                              className="object-contain w-full h-full p-1"
-                            />
-                          </div>
-                        </motion.div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="px-3 py-1 bg-slate-700/50 text-slate-300 text-sm rounded-full font-medium border border-slate-600/50">
-                              {exp.type}
-                            </span>
-                          </div>
-                          <h3 className="text-xl font-bold text-slate-200 mb-2 leading-tight">
-                            {exp.title}
-                          </h3>
-                          <h4 className="text-lg font-bold text-slate-300 mb-3">
-                            {exp.company}
-                          </h4>
-                          <div className="flex flex-col gap-2 text-sm">
-                            <div className="flex items-center gap-2 text-slate-400">
-                              <Calendar size={16} />
-                              <span className="font-medium">{exp.period}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-slate-400">
-                              <MapPin size={16} />
-                              <span className="font-medium">{exp.location}</span>
-                            </div>
-                          </div>
+                        <div className="w-14 h-14 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex-shrink-0">
+                          <Image 
+                            src={exp.companyLogo} 
+                            alt={exp.company} 
+                            width={56} 
+                            height={56} 
+                            className="object-cover w-full h-full" 
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[10px] uppercase tracking-wider text-gray-500">{exp.type}</span>
+                          <h3 className="text-lg font-bold text-white truncate">{exp.company}</h3>
+                          <p className="text-sm text-gray-400 truncate">{exp.title}</p>
                         </div>
                       </div>
-
-                      <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/50">
-                        <p className="text-slate-300 leading-relaxed font-medium">
-                          {exp.description}
-                        </p>
-                      </div>
-
-                      {/* Technologies */}
-                      <div>
-                        <h5 className="text-sm font-bold text-slate-200 mb-4 uppercase tracking-wide">
-                          Technologies Used
-                        </h5>
-                        <div className="flex flex-wrap gap-3">
-                          {exp.technologies.map((tech) => (
-                            <motion.div
-                              key={tech.name}
-                              whileHover={{ scale: 1.05, y: -2 }}
-                              className="flex items-center space-x-2 px-3 py-2 bg-slate-700/50 text-slate-300 text-sm font-medium rounded-xl border border-slate-600/50 shadow-sm hover:shadow-md hover:bg-slate-600/50 transition-all duration-300"
-                            >
-                              <Image
-                                src={tech.logo}
-                                alt={tech.name}
-                                width={18}
-                                height={18}
-                                className="flex-shrink-0"
-                              />
-                              <span>{tech.name}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right Column - Achievements */}
-                    <div className="lg:col-span-2">
-                      <h5 className="text-lg font-bold text-slate-200 mb-6 flex items-center gap-2">
-                        <TrendingUp size={20} className="text-green-400" />
-                        Key Achievements & Impact
-                      </h5>
                       
-                      <div className="space-y-4">
-                        {exp.achievements.map((achievement, idx) => (
-                          <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={inView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ delay: index * 0.1 + idx * 0.1 }}
-                            className="flex items-start gap-4 p-5 rounded-xl bg-slate-700/30 border border-slate-600/50 hover:bg-slate-600/30 hover:border-slate-500/50 transition-all duration-300 group/item"
-                          >
-                            <div className="flex-shrink-0 mt-1">
-                              <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30">
-                                <ChevronRight size={12} className="text-green-400 group-hover/item:translate-x-0.5 transition-transform" />
-                              </div>
-                            </div>
-                            <p className="text-slate-300 leading-relaxed font-medium">
-                              {achievement}
-                            </p>
-                          </motion.div>
+                      <div className="flex items-center gap-4 mt-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Calendar size={12} />
+                          <span>{exp.period.split(' - ')[0]}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MapPin size={12} />
+                          <span>Istanbul</span>
+                        </div>
+                      </div>
+
+                      {/* Mini Stats */}
+                      <div className="grid grid-cols-3 gap-2 mt-4">
+                        {Object.entries(exp.stats).map(([key, value]) => (
+                          <div key={key} className="text-center p-2 bg-white/5 rounded-lg">
+                            <div className="text-sm font-bold text-white">{value}</div>
+                            <div className="text-[9px] text-gray-500 uppercase">{key}</div>
+                          </div>
                         ))}
                       </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Leadership Experience */}
-          <motion.div variants={itemVariants} className="mb-16">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-200 mb-4">
-                Leadership Experience
-              </h3>
-              <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                Leading technical teams and research initiatives to deliver innovative solutions.
-              </p>
+                  </ReflectiveCard>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {leadershipExperience.map((leadership, index) => (
+            {/* Right - Details */}
+            <div className="lg:col-span-3">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={leadership.title}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  className="p-6 rounded-2xl trust-card hover:border-blue-400/50 transition-all duration-300"
+                  key={activeExp}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="trust-card rounded-2xl p-6 sm:p-8 h-full"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="text-3xl">{leadership.icon}</div>
+                  {/* Header */}
+                  <div className="flex items-start gap-4 mb-6 pb-6 border-b border-white/10">
+                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-white/10 border border-white/20">
+                      <Image 
+                        src={currentExp.companyLogo} 
+                        alt={currentExp.company} 
+                        width={64} 
+                        height={64} 
+                        className="object-cover w-full h-full" 
+                      />
+                    </div>
                     <div>
-                      <h4 className="font-bold text-slate-200 mb-1">
-                        {leadership.title}
-                      </h4>
-                      <div className="flex items-center gap-1 text-sm text-slate-400 mb-3">
-                        <Calendar size={16} />
-                        <span>{leadership.period}</span>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-2 py-0.5 bg-white/10 text-gray-400 text-xs rounded-full border border-white/10">
+                          {currentExp.type}
+                        </span>
                       </div>
+                      <h3 className="text-2xl font-bold text-white">{currentExp.company}</h3>
+                      <p className="text-gray-400">{currentExp.title}</p>
                     </div>
                   </div>
-                  
-                  <p className="text-slate-300 leading-relaxed mb-4 font-medium">
-                    {leadership.description}
+
+                  {/* Period & Location */}
+                  <div className="flex flex-wrap gap-4 mb-6 text-sm text-gray-500">
+                    <div className="flex items-center gap-2">
+                      <Calendar size={14} />
+                      <span>{currentExp.period}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin size={14} />
+                      <span>{currentExp.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-300 mb-6 p-4 bg-white/[0.02] rounded-xl border border-white/5">
+                    {currentExp.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {leadership.technologies.map((tech) => (
-                      <div
-                        key={tech.name}
-                        className="flex items-center space-x-2 px-3 py-1 bg-slate-700/50 text-slate-300 text-xs rounded-full border border-slate-600/50 font-medium"
-                      >
-                        <Image
-                          src={tech.logo}
-                          alt={tech.name}
-                          width={14}
-                          height={14}
-                          className="flex-shrink-0"
-                        />
-                        <span>{tech.name}</span>
-                      </div>
-                    ))}
+                  {/* Technologies */}
+                  <div className="mb-6">
+                    <h4 className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wide">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {currentExp.technologies.map((tech) => (
+                        <span 
+                          key={tech} 
+                          className="px-3 py-1.5 text-sm bg-white/5 rounded-lg border border-white/10 text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Achievements */}
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 mb-4 uppercase tracking-wide flex items-center gap-2">
+                      <TrendingUp size={14} /> Key Achievements
+                    </h4>
+                    <div className="space-y-3">
+                      {currentExp.achievements.map((achievement, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors group"
+                        >
+                          <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center border border-white/20 flex-shrink-0 mt-0.5">
+                            <ChevronRight size={10} className="text-white/60 group-hover:translate-x-0.5 transition-transform" />
+                          </div>
+                          <p className="text-sm text-gray-300">{achievement}</p>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
+          {/* Leadership */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center gap-3">
+              <Users size={24} className="text-white/40" />
+              Leadership Experience
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {leadershipExperience.map((leadership, idx) => (
+                <ReflectiveCard
+                  key={leadership.title}
+                  gradientFrom="#1a1a2e"
+                  gradientTo="#0f0f1a"
+                  metalness={0.6}
+                  roughness={0.4}
+                >
+                  <div className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="p-3 rounded-xl bg-white/10 border border-white/20">
+                        <leadership.icon size={20} className="text-white/60" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white">{leadership.title}</h4>
+                        <div className="flex items-center gap-1 text-sm text-gray-500">
+                          <Calendar size={12} />
+                          <span>{leadership.period}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-gray-400 text-sm">{leadership.description}</p>
+                  </div>
+                </ReflectiveCard>
               ))}
             </div>
           </motion.div>
@@ -315,4 +286,4 @@ const Experience = () => {
   )
 }
 
-export default Experience 
+export default Experience

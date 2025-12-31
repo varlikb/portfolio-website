@@ -1,27 +1,18 @@
 User-agent: *
 Allow: /
 
-# Security
-Disallow: /api/
-Disallow: /.well-known/
-Disallow: /admin/
-Disallow: /private/
+# Sitemap
+Sitemap: https://www.talhabvarlik.com/sitemap.xml
 
-# SEO
-Sitemap: https://talhabilalvarlik.dev/sitemap.xml
-
-# Crawl delay (optional - prevents aggressive crawling)
+# Crawl delay
 Crawl-delay: 1
 
-# Block specific problematic bots
-User-agent: CCBot
+# Block only problematic bots
+User-agent: AhrefsBot
 Disallow: /
 
-User-agent: ChatGPT-User
+User-agent: SemrushBot
 Disallow: /
 
-User-agent: GPTBot
+User-agent: MJ12bot
 Disallow: /
-
-User-agent: Google-Extended
-Disallow: / 

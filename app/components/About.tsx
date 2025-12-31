@@ -1,249 +1,455 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Code, Brain, Users, Target, BookOpen, Award, Heart, Rocket } from 'lucide-react'
+import { Code, Brain, Users, Target, Award, Rocket, MapPin, GraduationCap, User, FolderOpen, FileText } from 'lucide-react'
+import Image from 'next/image'
+import { File, Folder, Tree } from '@/components/ui/file-tree'
 
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+  const [selectedItem, setSelectedItem] = useState<string>('overview')
 
-  const strengths = [
-    {
-      icon: Brain,
-      title: "AI/ML Development",
-      description: "Hands-on experience implementing machine learning algorithms and AI solutions for real-world applications.",
-      color: "from-purple-500 to-indigo-600",
-      emoji: "🤖"
+  const contentMap: Record<string, {
+    title: string
+    icon: React.ElementType
+    content: React.ReactNode
+  }> = {
+    'overview': {
+      title: 'Overview',
+      icon: User,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            I'm a software engineer who bridges theoretical knowledge with practical solutions. 
+            From automated learning systems to full-stack IoT applications, I've developed projects across a wide spectrum.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            Through internships at TongucWorks and Sellmify, I've optimized systems by 30% 
+            while leading cross-functional teams of up to 6 developers.
+          </p>
+          <div className="grid grid-cols-2 gap-3 pt-4">
+            {[
+              { value: "4+", label: "Years Exp." },
+              { value: "10+", label: "Projects" },
+              { value: "6", label: "Team Lead" },
+              { value: "30%", label: "Performance" },
+            ].map((stat) => (
+              <div key={stat.label} className="p-3 rounded-lg bg-white/5 border border-white/10 text-center">
+                <div className="text-xl font-bold text-white">{stat.value}</div>
+                <div className="text-xs text-gray-500">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
     },
-    {
-      icon: Users,
-      title: "Team Leadership", 
-      description: "Led teams of up to 6 developers, managing projects and delivering features with measurable impact.",
-      color: "from-blue-500 to-cyan-600",
-      emoji: "👥"
+    'journey': {
+      title: 'My Journey',
+      icon: Rocket,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            My journey in software engineering started with a curiosity about how things work. 
+            This curiosity led me to explore various domains from AI/ML to embedded systems.
+          </p>
+          <div className="space-y-3 pt-2">
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Brain size={16} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white">AI/ML Development</h4>
+                <p className="text-xs text-gray-400">Implementing algorithms from scratch</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Code size={16} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white">Full-Stack Development</h4>
+                <p className="text-xs text-gray-400">End-to-end web applications</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Target size={16} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white">IoT & Embedded</h4>
+                <p className="text-xs text-gray-400">Hardware-software integration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
     },
-    {
-      icon: Code,
-      title: "Full-Stack Engineering",
-      description: "Proficient in end-to-end development from mobile apps to embedded systems and cloud solutions.",
-      color: "from-green-500 to-teal-600",
-      emoji: "💻"
-    },
-    {
+    'approach': {
+      title: 'My Approach',
       icon: Target,
-      title: "Performance Focus",
-      description: "Delivered 30% faster processing, 40% increased engagement, and 99.9% system uptime.",
-      color: "from-orange-500 to-red-600",
-      emoji: "⚡"
-    }
-  ]
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            I believe in clean, maintainable code and continuous learning. Every project is an opportunity 
+            to push boundaries and deliver exceptional results.
+          </p>
+          <div className="space-y-2 pt-2">
+            {[
+              "Write clean, documented code",
+              "Focus on performance optimization",
+              "Embrace continuous learning",
+              "Collaborate effectively with teams",
+              "Deliver measurable results"
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-sm text-gray-400">
+                <span className="text-white/40">◇</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    'education': {
+      title: 'Education',
+      icon: GraduationCap,
+      content: (
+        <div className="space-y-4">
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+            <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
+              <div>
+                <h4 className="text-lg font-semibold text-white">Bahçeşehir University</h4>
+                <p className="text-gray-400">B.Sc. in Software Engineering</p>
+              </div>
+              <span className="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full">2021 - 2025</span>
+            </div>
+            <p className="text-sm text-gray-400">
+              Comprehensive curriculum covering algorithms, data structures, software architecture, 
+              and modern development practices.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    'ux-cert': {
+      title: 'UX Design Certificate',
+      icon: Award,
+      content: (
+        <div className="space-y-4">
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Award size={20} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-white">UX Design</h4>
+                <p className="text-sm text-gray-400">Google via Coursera</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-400">
+              Comprehensive training in user experience design principles, user research, 
+              wireframing, prototyping, and usability testing.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    'pm-cert': {
+      title: 'Project Management Certificate',
+      icon: Award,
+      content: (
+        <div className="space-y-4">
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Award size={20} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-white">Project Management</h4>
+                <p className="text-sm text-gray-400">Google via Coursera</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-400">
+              Training in project planning, risk management, stakeholder communication, 
+              and agile methodologies.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    'azure-cert': {
+      title: 'Azure Fundamentals',
+      icon: Award,
+      content: (
+        <div className="space-y-4">
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 rounded-lg bg-white/10">
+                <Award size={20} className="text-white/60" />
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-white">Azure Fundamentals</h4>
+                <p className="text-sm text-gray-400">Microsoft</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-400">
+              Foundation in cloud concepts, Azure services, security, privacy, 
+              compliance, and pricing models.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    'ai-ml': {
+      title: 'AI/ML Development',
+      icon: Brain,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            Hands-on experience implementing machine learning algorithms and AI solutions from scratch.
+          </p>
+          <div className="space-y-2">
+            {[
+              "Search algorithms (A*, BFS, DFS, UCS)",
+              "Reinforcement learning (Q-Learning)",
+              "Probabilistic classifiers (Naive Bayes)",
+              "Neural network fundamentals",
+              "NP-complete problem heuristics"
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-sm text-gray-400">
+                <span className="text-white/40">◇</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    'fullstack': {
+      title: 'Full-Stack Development',
+      icon: Code,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            End-to-end development expertise from frontend interfaces to backend systems.
+          </p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "REST APIs", "Flutter"].map((tech) => (
+              <span key={tech} className="px-3 py-1.5 text-sm bg-white/5 rounded-lg border border-white/10 text-gray-300">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    'leadership': {
+      title: 'Team Leadership',
+      icon: Users,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            Led teams of up to 6 developers, managing projects with measurable impact and delivering results.
+          </p>
+          <div className="space-y-2">
+            {[
+              "Cross-functional team coordination",
+              "Agile project management",
+              "Code review and mentoring",
+              "Stakeholder communication",
+              "30% system optimization achieved"
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-sm text-gray-400">
+                <span className="text-white/40">◇</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    'iot': {
+      title: 'IoT & Embedded Systems',
+      icon: Target,
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-300 leading-relaxed">
+            Hardware-software integration experience with microcontrollers and IoT platforms.
+          </p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {["ESP32", "Arduino", "C++", "Wi-Fi Integration", "Sensor Systems", "Mobile App Integration"].map((tech) => (
+              <span key={tech} className="px-3 py-1.5 text-sm bg-white/5 rounded-lg border border-white/10 text-gray-300">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    },
+  }
+
+  const currentContent = contentMap[selectedItem] || contentMap['overview']
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   }
 
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
   }
 
   return (
-    <section id="about" className="section-padding bg-slate-900 relative overflow-hidden">
-      {/* Decorative Background - Dark Theme */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-full blur-3xl" />
-      </div>
-
+    <section id="about" className="section-padding relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          {/* Section Header */}
+        <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={containerVariants}>
+          {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.1, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="text-6xl mb-6"
-            >
-              👨‍💻
-            </motion.div>
+            <div className="text-4xl mb-6 text-white/20">◎</div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text">About Me</h2>
-            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-              Software engineer specializing in AI/ML, mobile development, and embedded systems. 
-              Passionate about building innovative solutions that make a real impact.
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Explore my background, skills, and experience
             </p>
           </motion.div>
 
           {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            
-            {/* Left Column - Journey & Philosophy */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <div className="trust-card p-8 rounded-3xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
-                    <Heart size={24} />
+          <motion.div variants={itemVariants} className="grid lg:grid-cols-5 gap-6 items-start">
+            {/* Left - Profile Card & File Tree */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Mini Profile */}
+              <div className="trust-card rounded-2xl p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative w-16 h-16">
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20">
+                      <Image
+                        src="/profile/profile-picture.jpeg"
+                        alt="Talha Bilal Varlık"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-200">
-                    My Journey
-                  </h3>
-                </div>
-                <div className="space-y-4 text-slate-300">
-                  <p className="leading-relaxed">
-                    I bridge theoretical knowledge with practical solutions - from automated learning systems 
-                    to full-stack IoT applications with real-time data processing.
-                  </p>
-                  <p className="leading-relaxed">
-                    Through internships at TongucWorks and Sellmify, I've optimized systems by 30% and 
-                    delivered solutions serving thousands of users while leading cross-functional teams.
-                  </p>
-                </div>
-              </div>
-
-              {/* Core Strengths */}
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 text-white">
-                    <Award size={24} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-200">
-                    Core Strengths
-                  </h3>
-                </div>
-                <div className="grid gap-4">
-                  {strengths.map((strength) => (
-                    <motion.div
-                      key={strength.title}
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      className="group flex items-start gap-4 p-6 rounded-2xl trust-card hover:border-blue-400/50 transition-all duration-300"
-                    >
-                      <div className="relative">
-                        <div className={`p-3 rounded-xl bg-gradient-to-r ${strength.color} text-white group-hover:scale-110 transition-transform duration-300`}>
-                          <strength.icon size={20} />
-                        </div>
-                        <div className="absolute -top-1 -right-1 text-sm opacity-80 group-hover:animate-bounce">
-                          {strength.emoji}
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-slate-200 mb-2">
-                          {strength.title}
-                        </h4>
-                        <p className="text-sm text-slate-300 leading-relaxed">
-                          {strength.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Approach & Values */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <div className="trust-card p-8 rounded-3xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                    <Rocket size={24} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-200">
-                    My Approach
-                  </h3>
-                </div>
-                <div className="space-y-4 text-slate-300">
-                  <p className="leading-relaxed">
-                    I believe in clean, maintainable code and continuous learning. My focus is on 
-                    bridging complex technical concepts with practical user needs.
-                  </p>
-                  <p className="leading-relaxed">
-                    Every project is an opportunity to push boundaries - whether optimizing algorithms 
-                    or exploring new applications of AI/ML in embedded systems.
-                  </p>
-                  <p className="leading-relaxed">
-                    I combine technical expertise with user-centered design principles to create 
-                    solutions that are both powerful and intuitive.
-                  </p>
-                </div>
-              </div>
-
-              {/* Education */}
-              <div className="trust-card p-8 rounded-3xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white">
-                    <BookOpen size={24} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-200">
-                    Education & Learning
-                  </h3>
-                </div>
-                <div className="space-y-4">
                   <div>
-                    <h4 className="text-lg font-bold text-slate-200">
-                      Bahçeşehir University
-                    </h4>
-                    <p className="text-slate-300 font-medium">B.Sc. in Software Engineering</p>
-                    <p className="text-sm text-slate-400">2021 - 2025</p>
-                  </div>
-                  <div className="pt-4 border-t border-slate-600/50">
-                    <p className="text-sm text-slate-400 mb-3">
-                      <strong>Certifications:</strong>
-                    </p>
-                    <div className="grid gap-2 text-sm text-slate-300">
-                      <span>• UX Design (Coursera)</span>
-                      <span>• Project Management (Coursera)</span>
-                      <span>• Azure Fundamentals</span>
+                    <h3 className="text-lg font-bold text-white">Talha Bilal Varlık</h3>
+                    <p className="text-sm text-gray-400">Software Engineer</p>
+                    <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                      <MapPin size={10} />
+                      <span>Istanbul, Turkey</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
 
-          {/* CTA */}
-          <motion.div variants={itemVariants} className="text-center mt-16">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-8 text-white overflow-hidden relative">
-              <div className="relative z-10">
-                <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="text-4xl mb-4"
-                >
-                  🚀
-                </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Explore More</h3>
-                <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                  Discover my technical skills and project portfolio.
-                </p>
-                <div className="flex justify-center space-x-4">
-                  <motion.a
-                    href="#skills"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="inline-flex items-center space-x-2 bg-white text-blue-600 font-semibold py-3 px-6 rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg"
-                  >
-                    <span>View Skills</span>
-                    <span>💻</span>
-                  </motion.a>
-                  <motion.a
-                    href="#projects"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="inline-flex items-center space-x-2 bg-white/10 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20"
-                  >
-                    <span>View Projects</span>
-                    <span>📂</span>
-                  </motion.a>
+              {/* File Tree */}
+              <div className="trust-card rounded-2xl p-4 h-[400px]">
+                <div className="flex items-center gap-2 mb-4 px-2">
+                  <FolderOpen size={16} className="text-white/40" />
+                  <span className="text-sm text-gray-400">Explorer</span>
                 </div>
+                <Tree
+                  className="h-[340px]"
+                  initialSelectedId="overview"
+                  initialExpandedItems={["about", "education", "certifications", "skills"]}
+                  onSelectChange={(id) => id && setSelectedItem(id)}
+                >
+                  <Folder element="about_me" value="about">
+                    <File value="overview">
+                      <p>overview.md</p>
+                    </File>
+                    <File value="journey">
+                      <p>journey.md</p>
+                    </File>
+                    <File value="approach">
+                      <p>approach.md</p>
+                    </File>
+                  </Folder>
+                  <Folder element="education" value="education-folder">
+                    <File value="education">
+                      <p>university.md</p>
+                    </File>
+                  </Folder>
+                  <Folder element="certifications" value="certifications">
+                    <File value="ux-cert">
+                      <p>ux_design.md</p>
+                    </File>
+                    <File value="pm-cert">
+                      <p>project_management.md</p>
+                    </File>
+                    <File value="azure-cert">
+                      <p>azure_fundamentals.md</p>
+                    </File>
+                  </Folder>
+                  <Folder element="skills" value="skills">
+                    <File value="ai-ml">
+                      <p>ai_ml.md</p>
+                    </File>
+                    <File value="fullstack">
+                      <p>fullstack.md</p>
+                    </File>
+                    <File value="leadership">
+                      <p>leadership.md</p>
+                    </File>
+                    <File value="iot">
+                      <p>iot_embedded.md</p>
+                    </File>
+                  </Folder>
+                </Tree>
+              </div>
+            </div>
+
+            {/* Right - Content Display */}
+            <div className="lg:col-span-3">
+              <div className="trust-card rounded-2xl p-6 min-h-[500px]">
+                {/* File Header */}
+                <div className="flex items-center gap-3 pb-4 mb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+                    <FileText size={14} className="text-white/40" />
+                    <span className="text-sm text-gray-300">{selectedItem}.md</span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedItem}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-2.5 rounded-xl bg-white/10 border border-white/20">
+                        <currentContent.icon size={20} className="text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">{currentContent.title}</h3>
+                    </div>
+                    {currentContent.content}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                <motion.a 
+                  href="#projects" 
+                  whileHover={{ scale: 1.02 }} 
+                  className="flex-1 btn-primary text-center py-4"
+                >
+                  View Projects
+                </motion.a>
+                <motion.a 
+                  href="#contact" 
+                  whileHover={{ scale: 1.02 }} 
+                  className="flex-1 btn-secondary text-center py-4"
+                >
+                  Get in Touch
+                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -253,4 +459,4 @@ const About = () => {
   )
 }
 
-export default About 
+export default About
