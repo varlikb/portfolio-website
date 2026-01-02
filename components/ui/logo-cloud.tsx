@@ -28,14 +28,14 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
         {logos.map((logo) => (
           <Image
             alt={logo.alt}
-            className="pointer-events-none h-8 w-auto select-none grayscale hover:grayscale-0 transition-all"
-            height={logo.height || 32}
+            className="pointer-events-none h-8 select-none grayscale hover:grayscale-0 transition-all"
+            height={32}
             key={`logo-${logo.alt}`}
             loading="lazy"
             src={logo.src}
-            width={logo.width || 100}
+            width={32}
             unoptimized
-            style={{ width: 'auto', height: 'auto' }}
+            style={{ width: 'auto' }}
           />
         ))}
       </InfiniteSlider>
